@@ -1,10 +1,10 @@
 from task import Task
 import storage
 
-# This class manages the list of tasks
+# This class will manage the list of tasks
 class TaskManager:
     
-    # Sets up the class with a file path and loads existing tasks
+    # Set up the class with a file path and load existing tasks
     def __init__(self, filepath):
         self.filepath = filepath
         self.tasks = self.load_tasks()
@@ -32,4 +32,10 @@ class TaskManager:
     def delete_task(self, index):
         if 0 <= index < len(self.tasks):
             self.tasks.pop(index)
+            self.save_tasks()
+
+    # Marks a task as complete using its index
+    def mark_complete(self, index):
+        if 0 <= index < len(self.tasks):
+            self.tasks[index].status = "complete"
             self.save_tasks()
